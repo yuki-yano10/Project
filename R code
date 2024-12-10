@@ -1,0 +1,18 @@
+> breaks_set = c(seq(1, 10000, by=100), seq(10001, max(table_intron_len), by=10000))　ここでbreaksを作成
+> table_intron_len_binned <- cut(table_intron_len, breaks=breaks_set, right=FALSE)
+> table_intron_len_binned
+   [1] [2.5e+03,2.6e+03) [801,901)         [1e+04,2e+04)    
+   [4] [601,701)         [3.7e+03,3.8e+03) [1,101)          
+   [7] [2.9e+03,3e+03)   [101,201)         [101,201)        
+  [10] [1,101)           [401,501)         [1e+04,2e+04)    
+  [13] [1e+04,2e+04)     [1e+04,2e+04)     [1.2e+03,1.3e+03)
+  [16] [1.3e+03,1.4e+03) [2.7e+03,2.8e+03) [2.7e+03,2.8e+03)
+  [19] [901,1e+03)       [801,901)         [501,601)        
+  [22] [701,801)         [201,301)         [101,201)        
+  [25] [3.6e+03,3.7e+03) [101,201)         [701,801)        
+.......
+
+ > ggplot(data=NULL, aes(x=table_intron_len_binned))+
++ geom_bar(fill="blue", color="black")+
++ scale_x_discrete(breaks=levels(table_intron_len_binned)[seq(1, length(levels(table_intron_len_binned)), by=4)])+
++ theme(axis.text.x=element_text(angle=90, hjust=1)) -> graph_inton_len 
